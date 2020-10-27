@@ -24,19 +24,21 @@ namespace ConsoleCreateSpanAnnotation
 
             // add a simple alignment
             var horizSegment = new IfcAlignment2DHorizontalSegment(
-                new IfcLineSegment2D(
+                new IfcCircularArcSegment2D(
                     new IfcCartesianPoint(
                         database,
-                        0,
-                        0),
-                    0.5,
-                    200));
+                        2,
+                        3),
+                    20/180 * Math.PI,
+                    580.0776, 
+                    400, 
+                    true));
 
             var verticalSegment = new IfcAlignment2DVerSegLine(
                      database,
                      0,
-                     200,
-                     14,
+                     580.0776,
+                     1.25,
                      0
                      );
 
@@ -54,7 +56,7 @@ namespace ConsoleCreateSpanAnnotation
             var alignment = new IfcAlignment(site, alignmentCurve)
             {
                 Name = "sampleAlignment",
-                Description = "some basic alignment data to demonstrate an IfcAnnotation with some IfcSpanPlacement",
+                Description = "some basic alignment data to demonstrate an IfcAnnotation with some SpanPlacement",
                 ObjectPlacement = new IfcLocalPlacement(
                     new IfcAxis2Placement3D(
                         new IfcCartesianPoint(database, 0, 0, 0)
@@ -73,8 +75,8 @@ namespace ConsoleCreateSpanAnnotation
 
             var spanPlacement = new IfcLinearSpanPlacement(
                 alignmentCurve,
-                new IfcDistanceExpression(database, 10),
-                165)
+                new IfcDistanceExpression(database, 35),
+                285)
             {
                 
             };
