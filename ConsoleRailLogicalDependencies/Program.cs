@@ -45,6 +45,36 @@ namespace ConsoleRailLogicalDependencies
             };
 
 
+            // signals
+            var startSignal = new IfcBuiltElement(fahrstrasse, null, null)
+            {
+                Name = "StartSignal",
+                Description = "logical Representation of 'StartSignal' assigned to a 'Fahrstrasse'"
+            };
+
+            var endSignal = new IfcBuiltElement(fahrstrasse, null, null)
+            {
+                Name = "EndSignal",
+                Description = "logical Representation of 'EndSignal' assigned to a 'Fahrstrasse'"
+            };
+
+            // properties to signal
+            List<IfcProperty> startSignalIfcProperties = new List<IfcProperty>();
+            startSignalIfcProperties.Add(new IfcPropertySingleValue(database, "SignalType", new IfcIdentifier("Main Signal")));
+            startSignalIfcProperties.Add(new IfcPropertySingleValue(database, "InService", new IfcBoolean(true)));
+            
+            new IfcPropertySet(startSignal, "CustomProperties", startSignalIfcProperties);
+
+
+            // Fahrweg - equipment
+            var equipmentFahrweg01 = new IfcBuiltElement(fahrweg, null, null) { Name = "Fahrweg-Equipment01", Description = "Additional components assigned to logical unit of 'Fahrweg'"};
+            var equipmentFahrweg02 = new IfcBuiltElement(fahrweg, null, null) { Name = "Fahrweg-Equipment02", Description = "Additional components assigned to logical unit of 'Fahrweg'"};
+
+            // --- alignment ---
+
+
+
+
             database.WriteFile("fahrstrasse.ifc");
         }
     }
