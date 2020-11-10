@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleCreateSpanAnnotation
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleRailLogicalDependencies", "ConsoleRailLogicalDependencies\ConsoleRailLogicalDependencies.csproj", "{41D07852-7EF8-402E-881E-C521E9F6C2F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleCreateSpatialBridgeStructure", "ConsoleCreateSpatialBridgeStructure\ConsoleCreateSpatialBridgeStructure.csproj", "{C33433FA-5FA7-49DE-9ADF-E24C53725F7A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -177,6 +179,18 @@ Global
 		{41D07852-7EF8-402E-881E-C521E9F6C2F2}.Release|x64.Build.0 = Release|Any CPU
 		{41D07852-7EF8-402E-881E-C521E9F6C2F2}.Release|x86.ActiveCfg = Release|Any CPU
 		{41D07852-7EF8-402E-881E-C521E9F6C2F2}.Release|x86.Build.0 = Release|Any CPU
+		{C33433FA-5FA7-49DE-9ADF-E24C53725F7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C33433FA-5FA7-49DE-9ADF-E24C53725F7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C33433FA-5FA7-49DE-9ADF-E24C53725F7A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C33433FA-5FA7-49DE-9ADF-E24C53725F7A}.Debug|x64.Build.0 = Debug|Any CPU
+		{C33433FA-5FA7-49DE-9ADF-E24C53725F7A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C33433FA-5FA7-49DE-9ADF-E24C53725F7A}.Debug|x86.Build.0 = Debug|Any CPU
+		{C33433FA-5FA7-49DE-9ADF-E24C53725F7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C33433FA-5FA7-49DE-9ADF-E24C53725F7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C33433FA-5FA7-49DE-9ADF-E24C53725F7A}.Release|x64.ActiveCfg = Release|Any CPU
+		{C33433FA-5FA7-49DE-9ADF-E24C53725F7A}.Release|x64.Build.0 = Release|Any CPU
+		{C33433FA-5FA7-49DE-9ADF-E24C53725F7A}.Release|x86.ActiveCfg = Release|Any CPU
+		{C33433FA-5FA7-49DE-9ADF-E24C53725F7A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
