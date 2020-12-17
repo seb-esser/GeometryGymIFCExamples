@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleCreateSurfaceMember"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleCreateSpatialStructure", "ConsoleCreateSpatialStructure\ConsoleCreateSpatialStructure.csproj", "{68792D4F-10A5-4541-BA0E-C1EA5DCD9AEF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleGettingStarted", "ConsoleGettingStarted\ConsoleGettingStarted.csproj", "{3AC483AF-5E3E-4A77-A40B-4157B7005D5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -149,6 +151,18 @@ Global
 		{68792D4F-10A5-4541-BA0E-C1EA5DCD9AEF}.Release|x64.Build.0 = Release|Any CPU
 		{68792D4F-10A5-4541-BA0E-C1EA5DCD9AEF}.Release|x86.ActiveCfg = Release|Any CPU
 		{68792D4F-10A5-4541-BA0E-C1EA5DCD9AEF}.Release|x86.Build.0 = Release|Any CPU
+		{3AC483AF-5E3E-4A77-A40B-4157B7005D5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AC483AF-5E3E-4A77-A40B-4157B7005D5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AC483AF-5E3E-4A77-A40B-4157B7005D5E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3AC483AF-5E3E-4A77-A40B-4157B7005D5E}.Debug|x64.Build.0 = Debug|Any CPU
+		{3AC483AF-5E3E-4A77-A40B-4157B7005D5E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3AC483AF-5E3E-4A77-A40B-4157B7005D5E}.Debug|x86.Build.0 = Debug|Any CPU
+		{3AC483AF-5E3E-4A77-A40B-4157B7005D5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AC483AF-5E3E-4A77-A40B-4157B7005D5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AC483AF-5E3E-4A77-A40B-4157B7005D5E}.Release|x64.ActiveCfg = Release|Any CPU
+		{3AC483AF-5E3E-4A77-A40B-4157B7005D5E}.Release|x64.Build.0 = Release|Any CPU
+		{3AC483AF-5E3E-4A77-A40B-4157B7005D5E}.Release|x86.ActiveCfg = Release|Any CPU
+		{3AC483AF-5E3E-4A77-A40B-4157B7005D5E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
