@@ -11,27 +11,38 @@ namespace ConsoleCreateGeomRep
     {
         static void Main(string[] args)
         {
-            var db = new DatabaseIfc(ModelView.Ifc4NotAssigned);
+            var dbInitial = new DatabaseIfc(ModelView.Ifc4NotAssigned);
             
-            var site = new IfcSite(db,"site");
+            var site = new IfcSite(dbInitial,"site");
             var project = new IfcProject(site, "GeomRep", IfcUnitAssignment.Length.Metre);
+          
+            IfcAxis2Placement3D placement1 = new IfcAxis2Placement3D(new IfcCartesianPoint(dbInitial, 2, 5, 1));
+			IfcLocalPlacement objectPlacement1 = new IfcLocalPlacement(site.ObjectPlacement, placement1);            
+            
+            IfcAxis2Placement3D placement2 = new IfcAxis2Placement3D(new IfcCartesianPoint(dbInitial, 10, 5, 1));
+			IfcLocalPlacement objectPlacement2 = new IfcLocalPlacement(site.ObjectPlacement, placement2);
 
-            IfcAxis2Placement3D placement = new IfcAxis2Placement3D(new IfcCartesianPoint(db, 2, 5, 1));
-			IfcLocalPlacement objectPlacement = new IfcLocalPlacement(site.ObjectPlacement, placement);
-			var proxy = new IfcBuildingElementProxy(site, objectPlacement, null)
+            
+            var profile1 = new IfcRectangleProfileDef(dbInitial, "rectangleProfileDef", 4, 6);
+            IfcExtrudedAreaSolid extrudedAreaSolid1 = new IfcExtrudedAreaSolid(profile1, 1.35);
+            IfcProductDefinitionShape shape1 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid1));
+
+            var profile2 = new IfcRectangleProfileDef(dbInitial, "rectangleProfileDef", 4, 6);
+            IfcExtrudedAreaSolid extrudedAreaSolid2 = new IfcExtrudedAreaSolid(profile2, 1.35);
+            IfcProductDefinitionShape shape2 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid2));
+
+
+            var proxy1 = new IfcBuildingElementProxy(site, objectPlacement1, shape1)
             {
                 Name ="Cuboid1"
             };
-			
-			// var profile = new IfcCircleProfileDef(db, "BoreHole", 4);
-			var profile = new IfcRectangleProfileDef(db, "rectangleProfileDef", 4, 6);
+            var proxy2 = new IfcBuildingElementProxy(site, objectPlacement2, shape2)
+            {
+                Name = "Cuboid2"
+            };
 
-            IfcExtrudedAreaSolid extrudedAreaSolid = new IfcExtrudedAreaSolid(profile, 1.35);
-			IfcProductDefinitionShape shape = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid));
 
-            proxy.Representation = shape;
-
-            db.WriteFile("model1.ifc");
+            dbInitial.WriteFile("model2.ifc");
 
 
 
