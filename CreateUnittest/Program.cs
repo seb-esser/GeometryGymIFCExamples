@@ -26,6 +26,7 @@ namespace CreateUnitTest
             testcasename.Add("Spatial_simple");
             testcasename.Add("Railway_spatial");
             testcasename.Add("Spatial_01");
+            testcasename.Add("Placement_Local");
 
             //Help handling + single selection
             if (args.Length != 0)
@@ -78,7 +79,8 @@ namespace CreateUnitTest
                 IfcLocalPlacement objectPlacement3 = new IfcLocalPlacement(site.ObjectPlacement, placement3);
                 IfcAxis2Placement3D placement4 = new IfcAxis2Placement3D(new IfcCartesianPoint(db, 5, 8, 3));
                 IfcLocalPlacement objectPlacement4 = new IfcLocalPlacement(site.ObjectPlacement, placement4);
-
+                IfcAxis2Placement3D originaxis2place = new IfcAxis2Placement3D(db.Factory.Origin);
+                IfcLocalPlacement origionobjplace = new IfcLocalPlacement(site.ObjectPlacement,originaxis2place);
 
 
                 //Select the Testcases and fill them into the container
@@ -170,6 +172,7 @@ namespace CreateUnitTest
 
                         db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
 
+                        //update
                         IfcBuildingStorey buildingsto2 = new IfcBuildingStorey(building4, "Level2", 0)
                         {
                             Guid = new Guid("42c74222-1337-4875-4242-bbbb41153531"),
@@ -180,8 +183,31 @@ namespace CreateUnitTest
 
                         break;
 
+                    case "Placement_Local":
+                        //Initial set
+                        var profile2 = new IfcRectangleProfileDef(db, "rectangleProfileDef", 4, 6);
+                        IfcExtrudedAreaSolid extrudedAreaSolid2 = new IfcExtrudedAreaSolid(profile2, 1.35);
+                        IfcProductDefinitionShape shape2 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid2));
+                            
+                        //Wall at origin
+                        IfcWall wall2 = new IfcWall(site, origionobjplace, shape2)
+                        {
+                            Guid = new Guid("42aa4222-1337-aaaa-4242-d3aa41153531"),
+                            Name = "Wall1"
+                        };
+                        wall2.ContainedInStructure.Guid = new Guid("42cab222-1337-4875-4242-d3b44abcd531");
+
+                        db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
+
+                        //Update
+                        IfcAxis2Placement3D wallaxisplace = new IfcAxis2Placement3D(new IfcCartesianPoint(db, 2, 3, 0));
+                        wall2.ObjectPlacement= new IfcLocalPlacement(site.ObjectPlacement, wallaxisplace);
 
 
+                        break;
+
+                    default:
+                        return;
                         //here add new test cases
                 }
 
