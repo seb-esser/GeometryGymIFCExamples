@@ -77,7 +77,7 @@ namespace CreateUnitTest
                 IfcAxis2Placement3D placement3 = new IfcAxis2Placement3D(new IfcCartesianPoint(db, 15, 3, 6));
                 IfcLocalPlacement objectPlacement3 = new IfcLocalPlacement(site.ObjectPlacement, placement3);
                 IfcAxis2Placement3D placement4 = new IfcAxis2Placement3D(new IfcCartesianPoint(db, 5, 8, 3));
-                IfcLocalPlacement objectPlacement4 = new IfcLocalPlacement(site.ObjectPlacement, placement3);
+                IfcLocalPlacement objectPlacement4 = new IfcLocalPlacement(site.ObjectPlacement, placement4);
 
 
 
@@ -154,6 +154,8 @@ namespace CreateUnitTest
                             ObjectPlacement = objectPlacement2
                         };
 
+                        building4.IsDecomposedBy.First().Guid = new Guid("42abcd22-1337-4875-4242-abcd41153531");
+
                         var profile1 = new IfcRectangleProfileDef(db, "rectangleProfileDef", 4, 6);
                         IfcExtrudedAreaSolid extrudedAreaSolid1 = new IfcExtrudedAreaSolid(profile1, 1.35);
                         IfcProductDefinitionShape shape1 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid1));
@@ -163,6 +165,8 @@ namespace CreateUnitTest
                             Guid=new Guid("42aa4222-1337-aaaa-4242-d3aa41153531"),
                             Name="Wall1"
                         };
+                        wall.ContainedInStructure.Guid = new Guid("42c74222-1337-4875-4242-d3b44abcd531");
+
 
                         db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
 
