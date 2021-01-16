@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleCreateSpatialStructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleCreateGeomRep", "ConsoleCreateGeomRep\ConsoleCreateGeomRep.csproj", "{B37A4B3B-AAEC-4685-B800-7C742F9FA470}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateUnitTest", "CreateUnittest\CreateUnitTest.csproj", "{B62C4498-0390-4123-8A94-184EF8861950}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -163,6 +165,18 @@ Global
 		{B37A4B3B-AAEC-4685-B800-7C742F9FA470}.Release|x64.Build.0 = Release|Any CPU
 		{B37A4B3B-AAEC-4685-B800-7C742F9FA470}.Release|x86.ActiveCfg = Release|Any CPU
 		{B37A4B3B-AAEC-4685-B800-7C742F9FA470}.Release|x86.Build.0 = Release|Any CPU
+		{B62C4498-0390-4123-8A94-184EF8861950}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B62C4498-0390-4123-8A94-184EF8861950}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B62C4498-0390-4123-8A94-184EF8861950}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B62C4498-0390-4123-8A94-184EF8861950}.Debug|x64.Build.0 = Debug|Any CPU
+		{B62C4498-0390-4123-8A94-184EF8861950}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B62C4498-0390-4123-8A94-184EF8861950}.Debug|x86.Build.0 = Debug|Any CPU
+		{B62C4498-0390-4123-8A94-184EF8861950}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B62C4498-0390-4123-8A94-184EF8861950}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B62C4498-0390-4123-8A94-184EF8861950}.Release|x64.ActiveCfg = Release|Any CPU
+		{B62C4498-0390-4123-8A94-184EF8861950}.Release|x64.Build.0 = Release|Any CPU
+		{B62C4498-0390-4123-8A94-184EF8861950}.Release|x86.ActiveCfg = Release|Any CPU
+		{B62C4498-0390-4123-8A94-184EF8861950}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
