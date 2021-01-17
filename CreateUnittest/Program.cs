@@ -353,8 +353,21 @@ namespace CreateUnitTest
                         break;
 
                     case "GeomRepresentation_05":
+                        var points1 = new List<IfcCartesianPoint>();
+                        points1.Add(new IfcCartesianPoint(db, -2, -3, 0));
+                        points1.Add(new IfcCartesianPoint(db, -2, 3, 0));
+                        points1.Add(new IfcCartesianPoint(db, 2, 3, 0));
+                        points1.Add(new IfcCartesianPoint(db, 2, -3, 0));
+                        var points2 = new List<IfcCartesianPoint>();
+                        points2.Add(new IfcCartesianPoint(db, -2, -3, 1.35));
+                        points2.Add(new IfcCartesianPoint(db, -2, 3, 1.35));
+                        points2.Add(new IfcCartesianPoint(db, 2, 3, 1.35));
+                        points2.Add(new IfcCartesianPoint(db, 2, -3, 1.35));
 
-                        //need to be added
+                        polyloop = new List<IfcPolyLoop>();
+                        polyloop.Add(new IfcPolyLoop(points1));
+                        polyloop.Add(new IfcPolyLoop(points2));
+
 
                         break;
 
