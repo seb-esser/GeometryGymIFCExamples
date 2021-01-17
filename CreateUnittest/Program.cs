@@ -16,7 +16,7 @@ namespace CreateUnitTest
         /// <help> Testcases: Spatial_simple\n
         /// Railway_spatial\n Spatial_01\nPlacement_Local"\nGeomRepresentation_01\n
         /// \nGeomRepresentation_02\nGeomRepresentation_03\nGeomRepresentation_04
-        /// \nGeomRepresentation_05
+        /// \nLocalPlacement_01\nLinearPlacement_02
         /// 
         /// </help>
         static void Main(string[] args)
@@ -33,7 +33,7 @@ namespace CreateUnitTest
             testcasename.Add("GeomRepresentation_02");
             testcasename.Add("GeomRepresentation_03");
             testcasename.Add("GeomRepresentation_04");
-            testcasename.Add("GeomRepresentation_05");
+            //testcasename.Add("GeomRepresentation_05");
             testcasename.Add("LocalPlacement_01");
             testcasename.Add("LinearPlacement_02");
             System.IO.Directory.CreateDirectory(".\\" + folder);
