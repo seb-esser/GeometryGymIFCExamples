@@ -15,7 +15,8 @@ namespace CreateUnitTest
         /// <param name="args">Testcases to expoert</param>
         /// <help> Testcases: Spatial_simple\n
         /// Railway_spatial\n Spatial_01\nPlacement_Local"\nGeomRepresentation_01\n
-        /// \nGeomRepresentation_02
+        /// \nGeomRepresentation_02\nGeomRepresentation_03\nGeomRepresentation_04
+        /// \nGeomRepresentation_05
         /// 
         /// </help>
         static void Main(string[] args)
@@ -30,6 +31,13 @@ namespace CreateUnitTest
             testcasename.Add("Placement_Local");
             testcasename.Add("GeomRepresentation_01");
             testcasename.Add("GeomRepresentation_02");
+            testcasename.Add("GeomRepresentation_03");
+            testcasename.Add("GeomRepresentation_04");
+            testcasename.Add("GeomRepresentation_05");
+            testcasename.Add("LocalPlacement_01");
+            testcasename.Add("LinearPlacement_02");
+            System.IO.Directory.CreateDirectory(".\\" + folder);
+
 
             //Help handling + single selection
             if (args.Length != 0)
@@ -225,11 +233,15 @@ namespace CreateUnitTest
                             Name = "Cuboid1",
                             Guid = new Guid("fbc7f4b2-177d-4875-88bb-d3abed15bbaa")
                         };
+                        proxy1.ContainedInStructure.Guid = new Guid("000ab222-1337-4875-4242-d3b44abcd531");
+
                         var proxy2 = new IfcBuildingElementProxy(site, objectPlacement2, shape2)
                         {
                             Name = "Cuboid2",
                             Guid = new Guid("f8e196cb-c7d9-4d53-9885-0f687706abcd")
                         };
+                        proxy2.ContainedInStructure.Guid = new Guid("42cab222-1337-4875-4242-00004abcd531");
+
 
                         db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
                         //Update
@@ -251,18 +263,200 @@ namespace CreateUnitTest
                             Name = "Cuboid1",
                             Guid = new Guid("fbcba4b2-1c7d-4875-88bb-d3abed15bbaa")
                         };
+                        proxy1.ContainedInStructure.Guid = new Guid("000ab222-1337-4875-4242-d3b00abcd531");
                         proxy2 = new IfcBuildingElementProxy(site, objectPlacement2, shape2)
                         {
                             Name = "Cuboid2",
                             Guid = new Guid("f821963b-c7d9-4d53-9885-0f87cd6abcda")
                         };
+                        proxy1.ContainedInStructure.Guid = new Guid("000ab222-1337-4875-4242-d3414abcd531");
                         db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
 
                         //Update
                         extrudedAreaSolid2.Depth = 3;
                         break;
 
+                    case "GeomRepresentation_03":
+                        //init
+                        profile1 = new IfcRectangleProfileDef(db, "rectangleProfileDef", 4, 6);
+                        extrudedAreaSolid1 = new IfcExtrudedAreaSolid(profile1, 1.35);
+                        shape1 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid1));
 
+                        proxy1 = new IfcBuildingElementProxy(site, objectPlacement1, shape1)
+                        {
+                            Name = "Cuboid1",
+                            Guid = new Guid("fbcba4b2-1c7d-0000-88bb-d3abed15bbaa")
+                        };
+                        proxy1.ContainedInStructure.Guid = new Guid("00011222-1337-4875-4242-d1114abcd531");
+                        db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
+
+                        //Update
+                        var profile3 = new IfcCircleProfileDef(db, "CylinderProfileDef", 4);
+                        var extrudedAreaSolid3 = new IfcExtrudedAreaSolid(profile3, 1.35);
+                        var shape3 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid3));
+                        proxy1.Representation = shape3;
+
+                        break;
+
+                    case "GeomRepresentation_04":
+                        //init
+                        profile1 = new IfcRectangleProfileDef(db, "rectangleProfileDef", 4, 6);
+                        extrudedAreaSolid1 = new IfcExtrudedAreaSolid(profile1, 1.35);
+                        shape1 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid1));
+
+                        proxy1 = new IfcBuildingElementProxy(site, objectPlacement1, shape1)
+                        {
+                            Name = "Cuboid1",
+                            Guid = new Guid("fbcba4b2-1c7d-0000-88bb-d3abed15bbaa")
+                        };
+                        proxy1.ContainedInStructure.Guid = new Guid("00011222-1337-4875-4242-d1114abcd531");
+
+                        db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
+
+                        //Update
+
+                        var points = new List<IfcCartesianPoint>();
+                        points.Add(new IfcCartesianPoint(db, -2, -3, 0));
+                        points.Add(new IfcCartesianPoint(db, -2, 3, 0));
+                        points.Add(new IfcCartesianPoint(db, 2, 3, 0));
+                        points.Add(new IfcCartesianPoint(db, 2, -3, 0));
+                        points.Add(new IfcCartesianPoint(db, -2, -3, 1.35));
+                        points.Add(new IfcCartesianPoint(db, -2, 3, 1.35));
+                        points.Add(new IfcCartesianPoint(db, 2, 3, 1.35));
+                        points.Add(new IfcCartesianPoint(db, 2, -3, 1.35));
+
+                        var polyloop = new List<IfcPolyLoop>();
+                        polyloop.Add(new IfcPolyLoop(points[0], points[1], points[2], points[3]));
+                        polyloop.Add(new IfcPolyLoop(points[0], points[4], points[5], points[1]));
+                        polyloop.Add(new IfcPolyLoop(points[0], points[4], points[7], points[3]));
+                        polyloop.Add(new IfcPolyLoop(points[4], points[5], points[6], points[7]));
+                        polyloop.Add(new IfcPolyLoop(points[1], points[5], points[6], points[2]));
+                        polyloop.Add(new IfcPolyLoop(points[3], points[7], points[6], points[2]));
+
+                        var faceouter = new List<IfcFaceOuterBound>();
+                        foreach (var i in polyloop)
+                        {
+                            faceouter.Add(new IfcFaceOuterBound(i, true));
+                        }
+
+                        var face = new List<IfcFace>();
+                        foreach (var j in faceouter)
+                        {
+                            face.Add(new IfcFace(j));
+                        }
+
+                        var closedshell = new IfcClosedShell(face);
+                        var brep = new IfcFacetedBrep(closedshell);
+
+                        shape2 = new IfcProductDefinitionShape(new IfcShapeRepresentation(brep));
+                        proxy1.Representation = shape2;
+                        break;
+
+                    case "GeomRepresentation_05":
+
+                        //need to be added
+
+                        break;
+
+
+                    case "LocalPlacement_01":
+                        //init
+                        profile1 = new IfcRectangleProfileDef(db, "rectangleProfileDef", 4, 6);
+                        extrudedAreaSolid1 = new IfcExtrudedAreaSolid(profile1, 1.35);
+                        shape1 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid1));
+
+                        profile2 = new IfcRectangleProfileDef(db, "rectangleProfileDef", 4, 6);
+                        extrudedAreaSolid2 = new IfcExtrudedAreaSolid(profile2, 1.35);
+                        shape2 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid2));
+
+                        proxy1 = new IfcBuildingElementProxy(site, objectPlacement1, shape1)
+                        {
+                            Name = "Cuboid1",
+                            Guid = new Guid("fbcba4b2-1c7d-4815-88bb-d3abed15bbaa")
+                        };
+                        proxy1.ContainedInStructure.Guid = new Guid("000ab222-1337-4875-4242-d3b00abcd531");
+                        proxy2 = new IfcBuildingElementProxy(site, objectPlacement2, shape2)
+                        {
+                            Name = "Cuboid2",
+                            Guid = new Guid("f821963b-c7d9-4d53-9825-0f87cd6abcda")
+                        };
+                        proxy1.ContainedInStructure.Guid = new Guid("000ab242-1337-4875-4242-d3414abcd531");
+                        db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
+                        //update
+                        var point1 = new IfcCartesianPoint(db, 2, 2, 2);
+                        placement1.Location = point1;
+
+
+                        break;
+
+                    case "LinearPlacement_02":
+
+                        profile1 = new IfcRectangleProfileDef(db, "rectangleProfileDef", 4, 6);
+                        extrudedAreaSolid1 = new IfcExtrudedAreaSolid(profile1, 1.35);
+                        shape1 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid1));
+
+                        profile2 = new IfcRectangleProfileDef(db, "rectangleProfileDef", 4, 6);
+                        extrudedAreaSolid2 = new IfcExtrudedAreaSolid(profile2, 1.35);
+                        shape2 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid2));
+
+
+                        IfcLine line1 = new IfcLine(new IfcCartesianPoint(db, 1, 1, 1)
+                            , new IfcVector(new IfcDirection(db, 1, 1), 20));
+
+                        IfcLine line2 = new IfcLine(new IfcCartesianPoint(db, 1, -1, -1)
+                            , new IfcVector(new IfcDirection(db, -1, 1), 20));
+
+                        var alignment1 = new IfcAlignment(site, line1)
+                        {
+                            Name = "Alignment1",
+                            Guid = new Guid("fbcba4b2-1cdd-48d5-88bb-d3aced15bbaa")
+                        };
+                        var alignment2 = new IfcAlignment(site, line2) 
+                        {
+                            Name = "Alignment2",
+                            Guid = new Guid("f111a4b2-1c7d-4815-88bb-d3aced15bbaa")
+                        };
+
+                        var distn1 = new IfcPointByDistanceExpression(4 ,line1);
+                        var distn2 = new IfcPointByDistanceExpression(2 ,line2);
+
+                        //Deprecated but should be right for IFC4
+                        var linearplace1 = new IfcLinearPlacement(line1, distn1)
+                        {
+                            Orientation = new IfcOrientationExpression(new IfcDirection(db, 0.5, 0.24),
+                            new IfcDirection(db, -0.24, 0.5))
+                        };
+                        var linearplace2 = new IfcLinearPlacement(line2, distn2)
+                        {
+                            Orientation = new IfcOrientationExpression(new IfcDirection(db, 0.75, 0.24),
+                            new IfcDirection(db, -0.24, 0.66))
+                        };
+
+                        proxy1 = new IfcBuildingElementProxy(site, linearplace1, shape1)
+                        {
+                            Name = "Cuboid1",
+                            Guid = new Guid("fbcba4b2-1c7d-4815-88bb-d3aced15bbaa")
+                        };
+                        proxy1.ContainedInStructure.Guid = new Guid("000cc222-1337-4875-4242-d3b00abcd531");
+                        proxy2 = new IfcBuildingElementProxy(site, linearplace2, shape2)
+                        {
+                            Name = "Cuboid2",
+                            Guid = new Guid("f821963b-c7d9-4d53-98a5-0f8ccd6abcda")
+                        };
+                        proxy1.ContainedInStructure.Guid = new Guid("000ccc42-1337-4875-4242-d3414abcd531");
+                        db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
+
+                        //Update
+
+                        IfcLine line3 = new IfcLine(new IfcCartesianPoint(db, 0, 1, 0)
+                             , new IfcVector(new IfcDirection(db, 0,5, 2), 15));
+                        var distn3 = new IfcPointByDistanceExpression(4, line3);
+
+                        linearplace1.PlacementMeasuredAlong = line3;
+                        linearplace1.Distance = distn3;
+
+
+                        break;
 
 
                     default:
@@ -277,55 +471,6 @@ namespace CreateUnitTest
 
     }
 }
-
-
-
-
-/* Backup files may needed later
- 
-     
-     
-            IfcAxis2Placement3D placement1 = new IfcAxis2Placement3D(new IfcCartesianPoint(dbInitial, 2, 5, 1));
-			IfcLocalPlacement objectPlacement1 = new IfcLocalPlacement(site.ObjectPlacement, placement1);            
-            
-            IfcAxis2Placement3D placement2 = new IfcAxis2Placement3D(new IfcCartesianPoint(dbInitial, 10, 5, 1));
-			IfcLocalPlacement objectPlacement2 = new IfcLocalPlacement(site.ObjectPlacement, placement2);
-
-            
-            var profile1 = new IfcRectangleProfileDef(dbInitial, "rectangleProfileDef", 4, 6);
-            IfcExtrudedAreaSolid extrudedAreaSolid1 = new IfcExtrudedAreaSolid(profile1, 1.35);
-            IfcProductDefinitionShape shape1 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid1));
-
-            //var profile2 = new IfcRectangleProfileDef(dbInitial, "rectangleProfileDef", 4, 6);
-            //IfcExtrudedAreaSolid extrudedAreaSolid2 = new IfcExtrudedAreaSolid(profile2, 1.35);
-            //IfcProductDefinitionShape shape2 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid2));
-
-
-            var proxy1 = new IfcBuildingElementProxy(site, objectPlacement1, shape1)
-            {
-                Name ="Cuboid1",
-                Guid = new Guid("fbc7f4b2-177d-4875-88bb-d3b44115bbaa")
-            };
-            var proxy2 = new IfcBuildingElementProxy(site, objectPlacement2, shape1)
-            {
-                Name = "Cuboid2",
-                Guid = new Guid("f8e196cb-c7d9-4d53-9885-0f687706727a")
-            };
-
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     */
 
 
 
