@@ -14,7 +14,8 @@ namespace CreateUnitTest
         /// </summary>
         /// <param name="args">Testcases to expoert</param>
         /// <help> Testcases: Spatial_simple\n
-        /// Railway_spatial\n Spatial_01\n
+        /// Railway_spatial\n Spatial_01\nPlacement_Local"\nGeomRepresentation_01\n
+        /// \nGeomRepresentation_02
         /// 
         /// </help>
         static void Main(string[] args)
@@ -27,6 +28,8 @@ namespace CreateUnitTest
             testcasename.Add("Railway_spatial");
             testcasename.Add("Spatial_01");
             testcasename.Add("Placement_Local");
+            testcasename.Add("GeomRepresentation_01");
+            testcasename.Add("GeomRepresentation_02");
 
             //Help handling + single selection
             if (args.Length != 0)
@@ -144,19 +147,19 @@ namespace CreateUnitTest
                         break;
                     case "Spatial_01":
                         //creating building and add parts to it
-                        IfcBuilding building4 = new IfcBuilding(db, "building4")
+                        building1 = new IfcBuilding(db, "building1")
                         {
                             Guid = new Guid("fbc7f4b2-177d-4875-88bb-d3b44115bb42"),
                             ObjectPlacement = objectPlacement1
                         };
 
-                        IfcBuildingStorey buildingsto1 = new IfcBuildingStorey(building4, "Level1", 0)
+                        IfcBuildingStorey buildingsto1 = new IfcBuildingStorey(building1, "Level1", 0)
                         {
                             Guid = new Guid("42c74222-1337-4875-4242-d3b441153531"),
                             ObjectPlacement = objectPlacement2
                         };
 
-                        building4.IsDecomposedBy.First().Guid = new Guid("42abcd22-1337-4875-4242-abcd41153531");
+                        building1.IsDecomposedBy.First().Guid = new Guid("42abcd22-1337-4875-4242-abcd41153531");
 
                         var profile1 = new IfcRectangleProfileDef(db, "rectangleProfileDef", 4, 6);
                         IfcExtrudedAreaSolid extrudedAreaSolid1 = new IfcExtrudedAreaSolid(profile1, 1.35);
@@ -173,7 +176,7 @@ namespace CreateUnitTest
                         db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
 
                         //update
-                        IfcBuildingStorey buildingsto2 = new IfcBuildingStorey(building4, "Level2", 0)
+                        IfcBuildingStorey buildingsto2 = new IfcBuildingStorey(building1, "Level2", 0)
                         {
                             Guid = new Guid("42c74222-1337-4875-4242-bbbb41153531"),
                             ObjectPlacement = objectPlacement4
@@ -185,12 +188,12 @@ namespace CreateUnitTest
 
                     case "Placement_Local":
                         //Initial set
-                        var profile2 = new IfcRectangleProfileDef(db, "rectangleProfileDef", 4, 6);
-                        IfcExtrudedAreaSolid extrudedAreaSolid2 = new IfcExtrudedAreaSolid(profile2, 1.35);
-                        IfcProductDefinitionShape shape2 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid2));
+                        profile1 = new IfcRectangleProfileDef(db, "rectangleProfileDef", 4, 6);
+                        extrudedAreaSolid1 = new IfcExtrudedAreaSolid(profile1, 1.35);
+                        shape1 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid1));
                             
                         //Wall at origin
-                        IfcWall wall2 = new IfcWall(site, origionobjplace, shape2)
+                        IfcWall wall2 = new IfcWall(site, origionobjplace, shape1)
                         {
                             Guid = new Guid("42aa4222-1337-aaaa-4242-d3aa41153531"),
                             Name = "Wall1"
@@ -206,9 +209,66 @@ namespace CreateUnitTest
 
                         break;
 
+                    case "GeomRepresentation_01":
+                        //init
+                        profile1 = new IfcRectangleProfileDef(db, "rectangleProfileDef", 4, 6);
+                        extrudedAreaSolid1 = new IfcExtrudedAreaSolid(profile1, 1.35);
+                        shape1 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid1));
+
+                        IfcRectangleProfileDef profile2 = new IfcRectangleProfileDef(db, "rectangleProfileDef", 4, 6);
+                        IfcExtrudedAreaSolid extrudedAreaSolid2 = new IfcExtrudedAreaSolid(profile2, 1.35);
+                        IfcProductDefinitionShape shape2 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid2));
+
+
+                        var proxy1 = new IfcBuildingElementProxy(site, objectPlacement1, shape1)
+                        {
+                            Name = "Cuboid1",
+                            Guid = new Guid("fbc7f4b2-177d-4875-88bb-d3abed15bbaa")
+                        };
+                        var proxy2 = new IfcBuildingElementProxy(site, objectPlacement2, shape2)
+                        {
+                            Name = "Cuboid2",
+                            Guid = new Guid("f8e196cb-c7d9-4d53-9885-0f687706abcd")
+                        };
+
+                        db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
+                        //Update
+                        proxy2.Representation = shape1;
+                        break;
+
+                    case "GeomRepresentation_02":
+                        //init
+                        profile1 = new IfcRectangleProfileDef(db, "rectangleProfileDef", 4, 6);
+                        extrudedAreaSolid1 = new IfcExtrudedAreaSolid(profile1, 1.35);
+                        shape1 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid1));
+
+                        profile2 = new IfcRectangleProfileDef(db, "rectangleProfileDef", 4, 6);
+                        extrudedAreaSolid2 = new IfcExtrudedAreaSolid(profile2, 1.35);
+                        shape2 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid2));
+
+                        proxy1 = new IfcBuildingElementProxy(site, objectPlacement1, shape1)
+                        {
+                            Name = "Cuboid1",
+                            Guid = new Guid("fbcba4b2-1c7d-4875-88bb-d3abed15bbaa")
+                        };
+                        proxy2 = new IfcBuildingElementProxy(site, objectPlacement2, shape2)
+                        {
+                            Name = "Cuboid2",
+                            Guid = new Guid("f821963b-c7d9-4d53-9885-0f87cd6abcda")
+                        };
+                        db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
+
+                        //Update
+                        extrudedAreaSolid2.Depth = 3;
+                        break;
+
+
+
+
                     default:
+                        //exit
                         return;
-                        //here add new test cases
+                        
                 }
 
                 db.WriteFile(".\\" + folder + "\\Update_" + proname + ".ifc");
