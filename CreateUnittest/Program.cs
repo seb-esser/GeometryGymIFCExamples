@@ -284,7 +284,7 @@ namespace CreateUnitTest
 
                         proxy1 = new IfcBuildingElementProxy(site, objectPlacement1, shape1)
                         {
-                            Name = "Cuboid1",
+                            Name = "Cylinder_extrudedArea",
                             Guid = new Guid("fbcba4b2-1c7d-0000-88bb-d3abed15bbaa")
                         };
                         proxy1.ContainedInStructure.Guid = new Guid("00011222-1337-4875-4242-d1114abcd531");
@@ -306,7 +306,7 @@ namespace CreateUnitTest
 
                         proxy1 = new IfcBuildingElementProxy(site, objectPlacement1, shape1)
                         {
-                            Name = "Cuboid1",
+                            Name = "Cuboid_extrudedArea",
                             Guid = new Guid("fbcba4b2-1c7d-0000-88bb-d3abed15bbaa")
                         };
                         proxy1.ContainedInStructure.Guid = new Guid("00011222-1337-4875-4242-d1114abcd531");
