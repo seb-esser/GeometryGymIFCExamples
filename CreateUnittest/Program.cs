@@ -284,7 +284,7 @@ namespace CreateUnitTest
 
                         proxy1 = new IfcBuildingElementProxy(site, objectPlacement1, shape1)
                         {
-                            Name = "Cylinder_extrudedArea",
+                            Name = "Cuboid_extrudedArea",
                             Guid = new Guid("fbcba4b2-1c7d-0000-88bb-d3abed15bbaa")
                         };
                         proxy1.ContainedInStructure.Guid = new Guid("00011222-1337-4875-4242-d1114abcd531");
@@ -292,10 +292,9 @@ namespace CreateUnitTest
 
                         //Update
                         var profile3 = new IfcCircleProfileDef(db, "CylinderProfileDef", 4);
-                        var extrudedAreaSolid3 = new IfcExtrudedAreaSolid(profile3, 1.35);
-                        var shape3 = new IfcProductDefinitionShape(new IfcShapeRepresentation(extrudedAreaSolid3));
-                        proxy1.Representation = shape3;
-
+                        extrudedAreaSolid1.SweptArea = profile3;
+                        proxy1.Name = "Cylinder_extrudedArea";
+                        
                         break;
 
                     case "GeomRepresentation_04":
