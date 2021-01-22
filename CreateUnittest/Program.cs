@@ -245,7 +245,12 @@ namespace CreateUnitTest
 
                         db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
                         //Update
+
+
                         proxy2.Representation = shape1;
+                        shape2.Dispose(true); //Remove orphaned entries
+
+
                         break;
 
                     case "GeomRepresentation_02":
@@ -291,10 +296,13 @@ namespace CreateUnitTest
                         db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
 
                         //Update
+                        profile1.Dispose(false); // Remove profile
                         var profile3 = new IfcCircleProfileDef(db, "CylinderProfileDef", 4);
                         extrudedAreaSolid1.SweptArea = profile3;
                         proxy1.Name = "Cylinder_extrudedArea";
-                        
+
+
+
                         break;
 
                     case "GeomRepresentation_04":
