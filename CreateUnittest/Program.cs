@@ -114,6 +114,7 @@ namespace CreateUnitTest
 
                         //Write inital File
                         db.WriteFile(".\\"+folder + "\\Initial_" + proname + ".ifc");
+                        db.WriteXmlFile(".\\"+folder + "\\Initial_" + proname + ".ifcxml");
 
                         //continue with the updated version
 
@@ -139,6 +140,7 @@ namespace CreateUnitTest
                             ObjectPlacement=objectPlacement2
                         };
                         db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
+                        db.WriteXmlFile(".\\" + folder + "\\Initial_" + proname + ".ifcxml");
 
                         //Update 
                         IfcSpatialZone spazone3 = new IfcSpatialZone(db, "Spatialzone3")
@@ -182,6 +184,7 @@ namespace CreateUnitTest
 
 
                         db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
+                        db.WriteXmlFile(".\\" + folder + "\\Initial_" + proname + ".ifcxml");
 
                         //update
                         IfcBuildingStorey buildingsto2 = new IfcBuildingStorey(building1, "Level2", 0)
@@ -209,6 +212,7 @@ namespace CreateUnitTest
                         wall2.ContainedInStructure.Guid = new Guid("42cab222-1337-4875-4242-d3b44abcd531");
 
                         db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
+                        db.WriteXmlFile(".\\" + folder + "\\Initial_" + proname + ".ifcxml");
 
                         //Update
                         IfcAxis2Placement3D wallaxisplace = new IfcAxis2Placement3D(new IfcCartesianPoint(db, 2, 3, 0));
@@ -244,6 +248,7 @@ namespace CreateUnitTest
 
 
                         db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
+                        db.WriteXmlFile(".\\" + folder + "\\Initial_" + proname + ".ifcxml");
                         //Update
 
 
@@ -276,6 +281,7 @@ namespace CreateUnitTest
                         };
                         proxy1.ContainedInStructure.Guid = new Guid("000ab222-1337-4875-4242-d3414abcd531");
                         db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
+                        db.WriteXmlFile(".\\" + folder + "\\Initial_" + proname + ".ifcxml");
 
                         //Update
                         extrudedAreaSolid2.Depth = 3;
@@ -294,6 +300,7 @@ namespace CreateUnitTest
                         };
                         proxy1.ContainedInStructure.Guid = new Guid("00011222-1337-4875-4242-d1114abcd531");
                         db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
+                        db.WriteXmlFile(".\\" + folder + "\\Initial_" + proname + ".ifcxml");
 
                         //Update
                         profile1.Dispose(false); // Remove profile
@@ -319,6 +326,7 @@ namespace CreateUnitTest
                         proxy1.ContainedInStructure.Guid = new Guid("00011222-1337-4875-4242-d1114abcd531");
 
                         db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
+                        db.WriteXmlFile(".\\" + folder + "\\Initial_" + proname + ".ifcxml");
 
                         //Update
 
@@ -402,6 +410,8 @@ namespace CreateUnitTest
                         };
                         proxy1.ContainedInStructure.Guid = new Guid("000ab242-1337-4875-4242-d3414abcd531");
                         db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
+                        db.WriteXmlFile(".\\" + folder + "\\Initial_" + proname + ".ifcxml");
+
                         //update
                         var point1 = new IfcCartesianPoint(db, 2, 2, 2);
                         placement1.Location = point1;
@@ -465,6 +475,7 @@ namespace CreateUnitTest
                         };
                         proxy1.ContainedInStructure.Guid = new Guid("000ccc42-1337-4875-4242-d3414abcd531");
                         db.WriteFile(".\\" + folder + "\\Initial_" + proname + ".ifc");
+                        db.WriteXmlFile(".\\" + folder + "\\Initial_" + proname + ".ifcxml");
 
                         //Update
 
@@ -486,6 +497,7 @@ namespace CreateUnitTest
                 }
 
                 db.WriteFile(".\\" + folder + "\\Update_" + proname + ".ifc");
+                db.WriteXmlFile(".\\" + folder + "\\Update_" + proname + ".ifcxml");
             }
         }
 
