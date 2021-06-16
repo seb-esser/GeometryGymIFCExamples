@@ -33,9 +33,9 @@ namespace testConsole
 			string filename = Path.Combine(di.FullName, "IFC Model.ifc");
 			DatabaseIfc db = new DatabaseIfc(filename);
 			IfcProject project = db.Project;
-			List<IfcBuildingElement> elements = project.Extract<IfcBuildingElement>();
+			List<IfcBuiltElement> elements = project.Extract<IfcBuiltElement>();
 			Dictionary<string, MyElement> dictionary = new Dictionary<string, MyElement>();
-			foreach(IfcBuildingElement element in elements)
+			foreach(IfcBuiltElement element in elements)
 			{
 				string desc = (element as IfcColumn != null ? "COL" : (element as IfcBeam != null ? "BEAM" : ""));
 

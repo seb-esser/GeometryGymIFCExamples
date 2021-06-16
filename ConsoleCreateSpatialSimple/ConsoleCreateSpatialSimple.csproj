@@ -6,7 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GeometryGymIFC" Version="0.1.11" />
+    <PackageReference Include="GeometryGymIFC" Version="0.1.13" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
 </Project>
